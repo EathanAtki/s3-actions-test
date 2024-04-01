@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: list versions
         run: |
-          aws s3api list-object-versions --bucket ${{ secrets.AWS_S3_BUCKET }}
+          aws s3api list-object-versions --bucket ${{ secrets.AWS_S3_BUCKET }} --query 'Versions[?IsLatest].[VersionId]' --output text
 env:
   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
